@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teruntuk kamu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+            flex-direction: column;
+			background-color: #000000;
+			color: #ffffff;
+			font-family: Arial, sans-serif;
+		}
+		img {
+			width: 250px;
+			height: 250px;
+			margin-bottom: 30px;
+			border-radius: 50%;
+			box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+		}
+		h1 {
+			text-align: center;
+			font-size: 24px;
+			margin-bottom: 20px;
+			text-shadow: 0 0 10px #ffffff, 0 0 1px #ffffff, 0 0 5px #ffffff;
+		}
+		button {
+			padding: 12px 25px;
+			font-size: 18px;
+			margin: 15px;
+			cursor: pointer;
+			border: none;
+			border-radius: 25px;
+			transition: all 0.3s ease;
+		}
+		#maafin {
+			background-color: #4CAF50;
+			color: white;
+		}
+		#engga mau {
+			background-color: #f44336;
+			color: white;
+		}
+		button:hover {
+			transform: scale(1.1);
+			box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+		}
+		.hidden {
+			display: none;
+		}
+
+        @media screen and (max-width: 768px) {
+			body {
+				transform: none;
+				padding: 15px;
+			}
+			img {
+				width: 180px;
+				height: 180px;
+			}
+			h1 {
+				font-size: 18px;
+			}
+			button {
+				padding: 10px 20px;
+				font-size: 16px;
+			}
+		}
+		@media screen and (max-width: 480px) {
+			body {
+				transform: none;
+				padding: 10px;
+			}
+			img {
+				width: 150px;
+				height: 150px;
+			}
+			h1 {
+				font-size: 16px;
+			}
+			button {
+				padding: 8px 16px;
+				font-size: 14px;
+			}
+		}
+
+        /* Tambahkan gaya untuk bintang */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+	</style>
+</head>
+<body>
+	<img id="heart" src="foto/0.gif" alt="Heart">
+	<h1 id="question">heiii... aku ingin minta maaf sama kamu 🥺</h1>
+	<button id="maafin">maafin</button>
+	<button id="engga mau">engga mau</button>
+	<div class="stars"></div>
+
+<script>
+    const heart = document.getElementById("heart");
+    const question = document.getElementById("question");
+    const maafin = document.getElementById("maafin");
+    const engga_mau = document.getElementById("engga mau");
+    let audio = new Audio("https://d.top4top.io/m_3163zl4mk1.mp3");
+
+    maafin.addEventListener("click", () => {
+        audio.pause();
+        audio = new Audio("https://c.top4top.io/m_3163ubdsn1.mp3");
+        audio.play();
+        question.innerHTML = "Aku sadar dalam apa yang telah aku lakukan, aku tersandung dengan perbutan yang salah terhadapmu sehingga membuat kesalaha pahaman diantara kita.<br><br>aku sadar, aku tidak bisa memutar waktu untuk memperbaiki kejadian itu yang membuat kita menjadi seperti ini, tapi aku ingin kau tau betapa menyesal karena kesalahpahaman ini terjadi.<br><br>Kesalahanku mungkin telah melukaimu, dan itu menghantui hati dan isi pikiranku dengan rasa sesal yang dalam.<br><br>Maafkan aku yang tidak mengeti sejak awal, aku menyesal jika luka ini menjadi penghalang diantara kita. Aku berharap ada kesempatan untuk memperbaiki segalanya, karena yang kuinginkan hanyalah kedamaian diantara kita.";
+        
+        heart.src = "foto/-1.gif";
+        maafin.classList.add("hidden");
+        engga_mau.classList.add("hidden");
+
+        const whatsappButton = document.createElement("button");
+        whatsappButton.innerText = "maafin";
+        whatsappButton.style.backgroundColor = "#25D366";
+        whatsappButton.style.color = "white";
+        whatsappButton.style.marginTop = "20px";
+        whatsappButton.addEventListener("click", () => {
+            const message = "Iya, aku maafin kokk";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/6282228931153?text=${encodedMessage}`;
+            window.open(whatsappURL, "_blank");
+        });
+
+        const maafButton = document.createElement("button");
+        maafButton.innerText = "aku engga bisa maafin kamu";
+        maafButton.style.backgroundColor = "#4CAF50";
+        maafButton.style.color = "white";
+        maafButton.addEventListener("click", () => {
+            const message = "maaf aku engga bisa maafin kamu";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/6282228931153?text=${encodedMessage}`;
+            window.open(whatsappURL, "_blank");
+        });
+
+        question.insertAdjacentElement('afterend', whatsappButton);
+        whatsappButton.insertAdjacentElement('afterend', maafButton);
+    });
+
+    engga_mau.addEventListener("click", () => {
+        if (question.innerHTML === "heiii... aku ingin minta maaf sama kamu 🥺") {
+            question.innerHTML = "Pikir lagi ya...";
+            heart.src = "foto/6.gif";
+        } else if (question.innerHTML === "Pikir lagi ya...") {
+            question.innerHTML = "Ayolah, maafin aku... 😣";
+            heart.src = "foto/2.gif";
+        } else if (question.innerHTML === "Ayolah, maafin aku... 😣") {
+            question.innerHTML = "Please maafin akuuuu 😩";
+            heart.src = "foto/3.gif";
+        } else if (question.innerHTML === "Please maafin akuuuu 😩") {
+            question.innerHTML = "Dengarkan aku sebentar...";
+            heart.src = "foto/4.gif";
+        } else if (question.innerHTML === "Dengarkan aku sebentar...") {
+            question.innerHTML = "Jangan pelit sama aku dong... 🥺";
+            heart.src = "foto/5.gif";
+        } else if (question.innerHTML === "Jangan pelit sama aku dong... 🥺") {
+            question.innerHTML = "Aku nangis nih... 😭";
+            heart.src = "foto/1.gif";
+        } else if (question.innerHTML === "Aku nangis nih... 😭") {
+            question.innerHTML = "Ini permintaan terakhirku, PLS MAAFIN AKUU... 😤";
+            heart.src = "foto/7.gif";
+        } else if (question.innerHTML === "Ini permintaan terakhirku, PLS MAAFIN AKUU... 😤") {
+            maafin.classList.add("hidden");
+            engga_mau.classList.add("hidden");
+            question.innerHTML = "Aku sadar dalam apa yang telah aku lakukan, aku tersandung dengan perbutan yang salah terhadapmu sehingga membuat kesalaha pahaman diantara kita.<br><br>aku sadar, aku tidak bisa memutar waktu untuk memperbaiki kejadian itu yang membuat kita menjadi seperti ini, tapi aku ingin kau tau betapa menyesal karena kesalahpahaman ini terjadi.<br><br>Kesalahanku mungkin telah melukaimu, dan itu menghantui hati dan isi pikiranku dengan rasa sesal yang dalam.<br><br>Maafkan aku yang tidak mengeti sejak awal, aku menyesal jika luka ini menjadi penghalang diantara kita. Aku berharap ada kesempatan untuk memperbaiki segalanya, karena yang kuinginkan hanyalah kedamaian diantara kita. 😔";
+            heart.src = "foto/8.gif";
+            audio.pause();
+            audio = new Audio("https://d.top4top.io/m_3163zl4mk1.mp3");
+            audio.play();
+
+            // Tambahkan tombol WhatsApp
+            const whatsappButton = document.createElement("button");
+        whatsappButton.innerText = "tetap engga mau maafin";
+        whatsappButton.style.backgroundColor = "#25D366";
+        whatsappButton.style.color = "white";
+        whatsappButton.style.marginTop = "20px";
+        whatsappButton.addEventListener("click", () => {
+            const message = "maaf aku engga bisa maafin kamu";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/6282228931153?text=${encodedMessage}`;
+            window.open(whatsappURL, "_blank");
+        });
+
+            // Tambahkan tombol kembali ke awal
+            const maafButton = document.createElement("button");
+            maafButton.innerText = "maafin";
+            maafButton.style.backgroundColor = "#4CAF50";
+            maafButton.style.color = "white";
+            maafButton.addEventListener("click", () => {
+                const message = "Iya, aku maafin kokk";
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/6282228931153?text=${encodedMessage}`;
+                window.open(whatsappURL, "_blank");
+            });
+
+            // Tambahkan tombol-tombol ke dalam dokumen
+            question.insertAdjacentElement('afterend', whatsappButton);
+            whatsappButton.insertAdjacentElement('afterend', maafButton);
+        }
+    });
+
+    // Tambahkan script untuk membuat bintang
+    function createStars() {
+        const starsContainer = document.querySelector('.stars');
+        const starCount = 100;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            starsContainer.appendChild(star);
+        }
+    }
+
+    createStars();
+</script>
+</body>
+</html>
